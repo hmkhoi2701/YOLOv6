@@ -235,6 +235,7 @@ class Evaler:
         inference time and mAP value.
         '''
         LOGGER.info(f'\nEvaluating speed.')
+        print('\nEvaluating speed.')
         self.eval_speed(task)
 
         if not self.do_coco_metric and self.do_pr_metric:
@@ -327,6 +328,7 @@ class Evaler:
             pre_time, inf_time, nms_time = 1000 * self.speed_result[1:].cpu().numpy() / n_samples
             for n, v in zip(["pre-process", "inference", "NMS"],[pre_time, inf_time, nms_time]):
                 LOGGER.info("Average {} time: {:.2f} ms".format(n, v))
+                print("Average {} time: {:.2f} ms".format(n, v))
 
     def box_convert(self, x):
         '''Convert boxes with shape [n, 4] from [x1, y1, x2, y2] to [x, y, w, h] where x1y1=top-left, x2y2=bottom-right.'''
